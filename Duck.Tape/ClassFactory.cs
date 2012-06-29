@@ -140,23 +140,25 @@ namespace Duck.Tape
 
         private void MapInterfaceMethods(FieldInfo classToWrapField, TypeBuilderHelper typeBuilder)
         {
-            //var specialMethods = new[] { "get_", "set_" };
-
+            //loop al interface methods
             foreach (var methodInfo in InterfaceToImplement.GetMethods())
             {
-                //if(specialMethods.Any(x=> methodInfo.Name.StartsWith(x)) && methodInfo.IsSpecialName)
-                //    continue;
-
+                //define the method in the generated type
                 var emitter = typeBuilder.DefineMethod(methodInfo)
                                 .Emitter
+                                    //this.[fieldName]
                                     .ldarg_0
                                     .ldfld(classToWrapField);
 
                 for (var index = 0; index < methodInfo.GetParameters().Length; index++)
+                    //pops all method arguments on the stack, so we can use them to 
+                    //call the targetMethod
                     emitter.ldarg(index + 1);
 
                 emitter
+                    //this.[fieldName].[MethodToImplement]([parameters])
                     .callvirt(GetMappedMethod(methodInfo))
+                    //return
                     .ret();
             }
         }
