@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duck.Tape.PerformanceTest", "Duck.Tape.PerformanceTest\Duck.Tape.PerformanceTest.csproj", "{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Duck.Tape.vsmdi
@@ -57,6 +59,16 @@ Global
 		{E769244D-E994-4FE7-9196-7B1AE1F695D1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E769244D-E994-4FE7-9196-7B1AE1F695D1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E769244D-E994-4FE7-9196-7B1AE1F695D1}.Release|x86.ActiveCfg = Release|Any CPU
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Debug|x86.ActiveCfg = Debug|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Debug|x86.Build.0 = Debug|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Release|Any CPU.ActiveCfg = Release|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Release|x86.ActiveCfg = Release|x86
+		{EE2A594D-52BB-4E37-B6C8-46CBFBAA772C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
