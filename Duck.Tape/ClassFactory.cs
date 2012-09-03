@@ -26,7 +26,7 @@ namespace Duck.Tape
 
         private static string GetGeneratedAssemblyPath()
         {
-            return @"C:\Users\pvps.SPHINXIT\Documents\GitHub\Duck.Tape\Duck.Tape.Sandbox\bin\Debug\Duck.Tape.Generated.dll";
+            return @"C:\path\to\Duck.Tape.Generated.dll";
         }
 
         ~ClassFactory()
