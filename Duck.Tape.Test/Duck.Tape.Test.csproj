@@ -45,8 +45,13 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicTests.cs" />
+    <Compile Include="IProtectedInterface.cs" />
+    <Compile Include="IProtectedInterfaceWithEvent.cs" />
+    <Compile Include="IProtectedInterfaceWithMethod.cs" />
+    <Compile Include="ITest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ConcreteClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Duck.Tape\Duck.Tape.csproj">
