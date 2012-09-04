@@ -155,9 +155,14 @@ namespace Duck.Tape
                     //call the targetMethod
                     emitter.ldarg(index + 1);
 
+                var mappedMethod = GetMappedMethod(methodInfo);
+
+                if(mappedMethod == null)
+                    throw new DuckedMemberNotFoundException(classToWrapField);
+
                 emitter
                     //this.[fieldName].[MethodToImplement]([parameters])
-                    .callvirt(GetMappedMethod(methodInfo))
+                    .callvirt(mappedMethod)
                     //return
                     .ret();
             }
@@ -189,12 +194,17 @@ namespace Duck.Tape
             var getBuilder = typeBuilder.DefineMethod(setterName, methodAttributes, returnType, null);
 
             //emit IL opcode
+            var propertyInfo = ClassToWrap.GetProperty(p.Name, p.PropertyType, new Type[] {});
+
+            if(propertyInfo == null)
+                throw new DuckedMemberNotFoundException(p);
+
             getBuilder
                 .Emitter
                 .nop
                 .ldarg_0
                 .ldfld(classToWrapField)
-                .callvirt(ClassToWrap.GetProperty(p.Name, p.PropertyType, new Type[] { }).GetGetMethod())
+                .callvirt(propertyInfo.GetGetMethod())
                 .ret();
 
             //apply the created method to the getter
@@ -214,13 +224,18 @@ namespace Duck.Tape
             var getBuilder = typeBuilder.DefineMethod(setterName, methodAttributes, null, returnType);
 
             //emit IL opcode
+            var propertyInfo = ClassToWrap.GetProperty(p.Name, p.PropertyType, new Type[] {});
+
+            if(propertyInfo == null)
+                throw new DuckedMemberNotFoundException(p);
+
             getBuilder
                 .Emitter
                 .nop
                 .ldarg_0
                 .ldfld(classToWrapField)
                 .ldarg_1
-                .callvirt(ClassToWrap.GetProperty(p.Name, p.PropertyType, new Type[] { }).GetSetMethod())
+                .callvirt(propertyInfo.GetSetMethod())
                 .ret();
 
             //apply the created method to the getter
@@ -304,6 +319,16 @@ namespace Duck.Tape
             }
 
             return true;
+        }
+    }
+     
+    public class DuckedMemberNotFoundException : Exception
+    {
+        public MemberInfo MemberInfo { get; set; }
+
+        public DuckedMemberNotFoundException(MemberInfo memberInfo)
+        {
+            MemberInfo = memberInfo;
         }
     }
 }

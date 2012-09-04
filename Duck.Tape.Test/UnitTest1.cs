@@ -26,6 +26,36 @@ namespace Duck.Tape.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(DuckedMemberNotFoundException))]
+        public void DuckedTypeCannotGetPrivateProperty()
+        {
+            var a = new A();
+            var duck = a.Duck<IProtectedInterface>();
+
+            duck.ProtectedData = "test";
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuckedMemberNotFoundException))]
+        public void DuckedTypeCannotGetPrivateMethod()
+        {
+            var a = new A();
+            var duck = a.Duck<IProtectedInterfaceWithMethod>();
+
+            duck.ProtectedMethod();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuckedMemberNotFoundException))]
+        public void DuckedTypeCannotGetPrivateEvent()
+        {
+            var a = new A();
+            var duck = a.Duck<IProtectedInterfaceWithEvent>();
+
+            duck.ProtectedEvent += (sender, args) => args.ToString();
+        }
+
+        [TestMethod]
         public void DuckedTypeCanGetProperty()
         {
             var a = new A();
@@ -130,9 +160,28 @@ namespace Duck.Tape.Test
             
         }
     }
+
+    public interface IProtectedInterfaceWithEvent
+    {
+        event EventHandler ProtectedEvent;
+    }
+
+    public interface IProtectedInterfaceWithMethod
+    {
+        void ProtectedMethod();
+    }
+
+    public interface IProtectedInterface
+    {
+        string ProtectedData { get; set; }
+    }
     
     public class A
     {
+        string ProtectedData { get; set; }
+        void ProtectedMethod(){}
+
+        event EventHandler ProtectedEvent;
         public event EventHandler TestEvent;
         public event EventHandler<ConsoleCancelEventArgs> SecondEvent;
 
