@@ -8,7 +8,7 @@ namespace Duck.Tape.Test
     public class ConcreteClass
     {
         string ProtectedData { get; set; }
-        void ProtectedMethod(){}
+        void ProtectedMethod() {}
 
         event EventHandler ProtectedEvent;
         public event EventHandler TestEvent;
