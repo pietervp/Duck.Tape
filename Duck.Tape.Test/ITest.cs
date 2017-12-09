@@ -4,6 +4,7 @@ namespace Duck.Tape.Test
 {
     public interface ITest
     {
+        //2M028D1PAZNAZNK
         event EventHandler TestEvent;
         event EventHandler<ConsoleCancelEventArgs> SecondEvent;
 
